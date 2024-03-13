@@ -20,7 +20,7 @@ builder.Services.AddHttpClient("ProductServices", configureClient =>
 builder.Services.AddHttpClient("CustomerServices", config =>
 {
     config.BaseAddress = new Uri(builder.Configuration["Services:Customers"]);
-}).AddTransientHttpErrorPolicy(p=>p.WaitAndRetryAsync(_=>TimeSpan.FromMilliseconds(500)));
+}).AddTransientHttpErrorPolicy(p=>p.WaitAndRetryAsync(5,_=>TimeSpan.FromMilliseconds(500)));
 // Add services to the container.
 
 builder.Services.AddControllers();
